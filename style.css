@@ -1,0 +1,202 @@
+:root {
+    --bg-color: #121212;
+    --primary-text: #E0E0E0;
+    --secondary-text: #BDBDBD;
+    --grid-border: #333;
+    --day-bg: #1E1E1E;
+    --accent-color: #4CAF50;
+    --delete-color: #f44336;
+    --bar-color: #2979FF;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--primary-text);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#app-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+header h1 { font-size: 1.5em; margin: 0; }
+header button { background: none; border: none; color: var(--primary-text); font-size: 1.8em; cursor: pointer; }
+
+#weekdays, #calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+#weekdays div { text-align: center; color: var(--secondary-text); font-weight: bold; padding-bottom: 10px; }
+
+.day {
+    background-color: var(--day-bg);
+    border: 1px solid var(--grid-border);
+    height: 100px;
+    padding: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.day-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+.day .date-number { font-size: 0.9em; align-self: flex-start; }
+.workout-texts {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+.workout-text {
+    font-weight: bold; color: var(--accent-color);
+    font-size: 0.85em;
+    line-height: 1.2;
+}
+/* --- NEW CLASS FOR SMALLER FONT ON LONG WORDS --- */
+.workout-text-small {
+    font-size: 0.7em;
+}
+.workout-emoji { font-size: 1.5em; line-height: 1; }
+
+.day:hover { background-color: #2a2a2a; }
+.day.padding-day { background-color: transparent; border: none; cursor: default; }
+
+#stats-btn { width: 100%; padding: 15px; margin-top: 20px; background-color: var(--accent-color); border: none; border-radius: 8px; color: white; font-size: 1em; cursor: pointer; }
+
+/* Modal Styling */
+.hidden { display: none !important; }
+#entry-modal, #stats-modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7);
+    display: flex; justify-content: center; align-items: center; z-index: 100;
+}
+.modal-content {
+    background-color: var(--day-bg); padding: 25px; border-radius: 10px;
+    width: 90%; max-width: 450px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); text-align: center;
+}
+#workout-input-1, #workout-input-2, #duration-input {
+    width: calc(100% - 20px); padding: 10px; margin-bottom: 15px; border: 1px solid var(--grid-border);
+    border-radius: 5px; background-color: #333; color: var(--primary-text);
+}
+.modal-content p { color: var(--secondary-text); margin: 0 0 10px 0; }
+#emoji-selector { margin-bottom: 20px; }
+.emoji-option { font-size: 2em; margin: 0 10px; cursor: pointer; opacity: 0.5; transition: all 0.2s; }
+.emoji-option.selected { opacity: 1; transform: scale(1.2); }
+
+/* --- BUTTON STYLES SEPARATED FOR CONTROL --- */
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+.modal-actions button {
+    flex-grow: 1; /* Allow buttons to grow and fill space */
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+}
+#close-stats-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background-color: var(--secondary-text);
+    margin-top: 15px;
+}
+/* --- END OF BUTTON FIX --- */
+
+#save-btn { background-color: var(--accent-color); }
+#delete-btn { background-color: var(--delete-color); }
+#close-modal-btn { background-color: var(--secondary-text); }
+
+
+/* Stats Section Styling */
+#stats-dropdown {
+    width: 100%; padding: 10px; background-color: #333; color: var(--primary-text);
+    border: 1px solid var(--grid-border); border-radius: 5px; margin-bottom: 20px;
+}
+#stats-content-container { min-height: 200px; display: flex; justify-content: center; align-items: center; position: relative; }
+.stats-text-view { font-size: 1.2em; line-height: 1.6; }
+#overall-total-time { margin-top: 20px; font-weight: bold; color: var(--accent-color); }
+
+.chart-wrapper {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 220px;
+    box-sizing: border-box;
+}
+.y-axis {
+    position: relative;
+    width: 25px;
+    height: 100%;
+    font-size: 0.8em;
+    color: var(--secondary-text);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: right;
+    padding-right: 5px;
+}
+.chart-area {
+    position: relative;
+    flex-grow: 1;
+    height: 100%;
+    border-left: 1px solid var(--secondary-text);
+    border-bottom: 1px solid var(--secondary-text);
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+.bar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    flex-basis: 0;
+    flex-grow: 1;
+    height: 100%;
+}
+.bar {
+    width: 60%;
+    background-color: var(--bar-color);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    transition: height 0.5s ease-out;
+}
+.bar-label {
+    font-size: 0.8em;
+    word-break: break-word;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    position: absolute;
+    bottom: -25px;
+}

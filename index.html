@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Progress Calendar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        <header>
+            <button id="prev-month-btn">&lt;</button>
+            <h1 id="month-display"></h1>
+            <button id="next-month-btn">&gt;</button>
+        </header>
+
+        <div id="weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+        </div>
+
+        <div id="calendar-grid"></div>
+
+        <button id="stats-btn">Show Monthly Stats</button>
+    </div>
+
+    <div id="entry-modal" class="hidden">
+        <div class="modal-content">
+            <h2>Workout for <span id="modal-date-display"></span></h2>
+            <input type="text" id="workout-input-1" placeholder="Workout #1 (e.g., Shoulders)">
+            <input type="text" id="workout-input-2" placeholder="Workout #2 (Optional)">
+            <input type="text" id="duration-input" placeholder="Total Duration (e.g., 1h 10m)">
+            
+            <p>Select Emoji (Optional)</p>
+            <div id="emoji-selector">
+                <span class="emoji-option" data-emoji="🏋🏽">🏋🏽</span>
+                <span class="emoji-option" data-emoji="💪🏼">💪🏼</span>
+                <span class="emoji-option" data-emoji="🦵">🦵</span>
+                <span class="emoji-option" data-emoji="❌">❌</span>
+            </div>
+
+            <div class="modal-actions">
+                <button id="save-btn">Save</button>
+                <button id="delete-btn">Delete</button>
+                <button id="close-modal-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="stats-modal" class="hidden">
+        <div class="modal-content">
+            <h2 id="stats-title">Monthly Stats</h2>
+            <select id="stats-dropdown">
+                <option value="All">All Workouts Comparison</option>
+                <option value="Biceps">Biceps</option>
+                <option value="Triceps">Triceps</option>
+                <option value="Cardio">Cardio</option>
+                <option value="Shoulders">Shoulders</option>
+                <option value="Legs">Legs</option>
+                <option value="Abs">Abs</option>
+                <option value="Chest">Chest</option>
+                <option value="Back">Back</option>
+            </select>
+
+            <div id="stats-content-container">
+                </div>
+            
+            <div id="overall-total-time">
+                </div>
+
+            <button id="close-stats-btn">Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
