@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loadCalendar() {
     const dt = new Date();
-    if (nav !== 0) dt.setMonth(new Date().getMonth() + nav, 1);
-    // Save nav to localStorage so month navigation persists
+    dt.setDate(1); // <-- Set the day to 1 FIRST
+    dt.setMonth(new Date().getMonth() + nav); // <-- Now set the month
     localStorage.setItem('nav', nav);
 
         const month = dt.getMonth();
