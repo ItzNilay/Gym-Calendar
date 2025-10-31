@@ -271,12 +271,17 @@ document.addEventListener('DOMContentLoaded', () => {
         statsModal.classList.remove('hidden');
     }
 
-    // --- Event Listeners ---
-    prevMonthBtn.addEventListener('click', () => { nav--; loadCalendar(); });
-    nextMonthBtn.addEventListener('click', () => { nav++; loadCalendar(); });
-    // Save nav to localStorage on navigation
-    prevMonthBtn.addEventListener('click', () => { nav--; localStorage.setItem('nav', nav); loadCalendar(); });
-    nextMonthBtn.addEventListener('click', () => { nav++; localStorage.setItem('nav', nav); loadCalendar(); });
+// --- Event Listeners ---
+    prevMonthBtn.addEventListener('click', () => {
+        nav--;
+        localStorage.setItem('nav', nav);
+        loadCalendar();
+    });
+    nextMonthBtn.addEventListener('click', () => {
+        nav++;
+        localStorage.setItem('nav', nav);
+        loadCalendar();
+    });
     saveBtn.addEventListener('click', saveEntry);
     deleteBtn.addEventListener('click', deleteEntry);
     entryModal.querySelector('#close-modal-btn').addEventListener('click', () => entryModal.classList.add('hidden'));
