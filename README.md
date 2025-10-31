@@ -1,1 +1,2 @@
-Navigate to https://itznilay.github.io/Gym-Calendar/ to run and view the application!
+https://itznilay.github.io/Gym-Calendar/ 
+Navigate to this URL to run and view the application!
