@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+ document.addEventListener('DOMContentLoaded', () => {
     // --- DOM Elements ---
     const monthDisplay = document.getElementById('month-display');
     const calendarGrid = document.getElementById('calendar-grid');
